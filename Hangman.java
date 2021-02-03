@@ -4,6 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Simple hangman game. It reads a word from a file, chooses one at random, 
+ * and then the player can guess letters one at a time until they get the 
+ * word right or run out of guesses. 
+ * 
+ * @author saaki
+ *
+ */
+
 public class Hangman 
 {
 	int wins, losses;
@@ -11,6 +20,11 @@ public class Hangman
 	
 	Dictionary dictionary;
 	
+	/**
+	 * Object constructor
+	 * Instantiates dictionary object and retrieves past win-loss record
+	 * 
+	 */
 	public Hangman()
 	{
 		dictionary = new Dictionary("words.txt");
@@ -18,6 +32,9 @@ public class Hangman
 
 	}
 	
+	/**
+	 * Reads the wins and losses record
+	 */
 	public void loadWL()
 	{
 		File myFile = new File("winsAndLosses.txt");
@@ -38,6 +55,9 @@ public class Hangman
 		}
 	}
 	
+	/**
+	 * Records the total win loss record in a file
+	 */
 	public void writeWL()
 	{
 		try 
@@ -53,6 +73,18 @@ public class Hangman
 		
 	}
 	
+	/**
+	 * 
+	 * First asks the user if they would like to play the game. If they choose y 
+	 * then the game chooses a random word and the user is ready to guess. If the 
+	 * user chooses a letter that is not in the word then their guesses decrease
+	 * by 1. The user has 5 incorrect guesses every round. If they have 0 guesses 
+	 * left then the game ends with a loss. You get another option to play again 
+	 * despite a win or loss. If you choose n and don't want to continue, the 
+	 * program ends and returns your win-loss record for the round and then the 
+	 * total for all the rounds. 
+	 * 
+	 */
 	public void playGame()
 	{
 		int w = 0, l = 0;
